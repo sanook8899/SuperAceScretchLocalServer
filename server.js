@@ -49,12 +49,6 @@ function generateRandomInt(length) {
 }
 
 
-function generate() {
-    const min = 1.00;
-    const max = 5.00;
-    roundCrashValue = (Math.random() * (max - min) + min).toFixed(2);
-};
-
 function loginRequest() {
     playerId = generateRandomString(8);
     balance = 200000;
@@ -112,8 +106,8 @@ function joinRoomRequest() {
 
     betInfo = {
         gameName: "Plinko",
-        minBet: 10,
-        maxBet: 60,
+        minBet: 1,
+        maxBet: 1024,
     }
 
     currencyInfo = {
@@ -131,7 +125,7 @@ function joinRoomRequest() {
                 roomId: roomId,
                 errCode: 0,
                 balance: balance,
-                betInfo: betInfo,
+                betInfo: [betInfo],
                 currencyInfo: currencyInfo,
             }]
         }
@@ -152,11 +146,11 @@ function transferRequest() {
         id: 3,
         data: {
             subType: 100069,
-            subData: {
+            subData: [{
                 errCode: 0,
                 balance: balance,
                 increaseMoney: increaseMoney,
-            }
+            }]
         }
     }
 
@@ -211,7 +205,8 @@ function roomInfoRequest() {
 
     roomInfo = {
         betOdds: multiplierValue,
-        betLimit: 60,
+        minBet: 1,
+        maxBet: 1024,
         recordList: records,
     }
 
